@@ -1,4 +1,4 @@
-import User from "../models/User";
+import User from "../models/User.js";
 import jwt from "jsonwebtoken"
 import validator from "validator";
 
@@ -37,4 +37,4 @@ export async function signup(req,res){
         console.log("Error in signup controller",error);
         res.status(500).json({message:"Internal server error"})
     }
-}
+} 

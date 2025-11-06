@@ -1,18 +1,19 @@
 import express from "express"
 import "dotenv/config"
+import authRoutes from "./routes/auth.routes.js"
+import { connect } from "mongoose";
+import { connectDB } from "./lib/db.js";
 
 const app = express();
 
 const PORT = process.env.PORT
 
 app.use(express.json());
-app.get("/signup",(req,res)=>{
-    res.json({
-        message:"Dmo route",
-        status:200
-    })
-})
+
+app.use("/api/auth", authRoutes)
+
 
 app.listen(PORT, ()=>{
     console.log(`Server is running on the ${PORT}`)
+    connectDB()
 })
