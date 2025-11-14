@@ -11,4 +11,4 @@ if(!apiKey||!apiSecert){
 }
 
 
-const stremaClient = StreamChat.getInstance
+const stremaClient = StreamChat.getInstance(apiKey, apiSecert);
