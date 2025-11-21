@@ -12,3 +12,7 @@ if(!apiKey||!apiSecert){
 
 
 const stremaClient = StreamChat.getInstance(apiKey, apiSecert);
+
+export const upsertStreamUser  = async(userData) =>{
+    
+}
