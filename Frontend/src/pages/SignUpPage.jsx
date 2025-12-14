@@ -84,7 +84,7 @@ const SignUpPage = () => {
               <input
                 type="password"
                 placeholder="********"
-                className="w-full px-4 py-2 border rounded-lg text-black placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-400"
+                className="w-full px-4 py-2 border rounded-lg text-black placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-400"
                 value={signupData.password}
                 onChange={(e) =>
                   setSignupData({ ...signupData, password: e.target.value })
