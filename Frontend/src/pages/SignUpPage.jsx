@@ -2,6 +2,7 @@ import { useState } from "react";
 import logo from "../assets/muskConnect_logo.png";
 import { Link } from "react-router-dom";
 import signImg from "../assets/signupImg.svg";
+import useSignUp from "../hooks/useSignUp";
 
 const SignUpPage = () => {
   const [signupData, setSignupData] = useState({
@@ -10,17 +11,11 @@ const SignUpPage = () => {
     password: "",
   });
 
-  const [isPending, setIsPending] = useState(false);
+  const { isPending, error, signupMutation } = useSignUp();
 
   const handleSignup = (e) => {
     e.preventDefault();
-    setIsPending(true);
-
-    // TEMP: simulate API call
-    setTimeout(() => {
-      console.log("Signup Data:", signupData);
-      setIsPending(false);
-    }, 1000);
+    signupMutation(signupData); // ✅ FIXED
   };
 
   return (
@@ -41,6 +36,13 @@ const SignUpPage = () => {
             </p>
           </div>
 
+          {/* ERROR MESSAGE */}
+          {error && (
+            <p className="text-red-500 text-sm text-center mb-2">
+              {error.message || "Something went wrong"}
+            </p>
+          )}
+
           <form onSubmit={handleSignup} className="space-y-4">
             {/* Full Name */}
             <div>
@@ -50,7 +52,7 @@ const SignUpPage = () => {
               <input
                 type="text"
                 placeholder="Enter your name"
-                className="w-full px-4 py-2 border rounded-lg text-black placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-400"
+                className="w-full px-4 py-2 border rounded-lg text-black focus:ring-2 focus:ring-green-400"
                 value={signupData.fullName}
                 onChange={(e) =>
                   setSignupData({ ...signupData, fullName: e.target.value })
@@ -67,7 +69,7 @@ const SignUpPage = () => {
               <input
                 type="email"
                 placeholder="Enter your email address"
-                className="w-full px-4 py-2 border rounded-lg text-black placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-400"
+                className="w-full px-4 py-2 border rounded-lg text-black focus:ring-2 focus:ring-green-400"
                 value={signupData.email}
                 onChange={(e) =>
                   setSignupData({ ...signupData, email: e.target.value })
@@ -84,7 +86,7 @@ const SignUpPage = () => {
               <input
                 type="password"
                 placeholder="********"
-                className="w-full px-4 py-2 border rounded-lg text-black placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-400"
+                className="w-full px-4 py-2 border rounded-lg text-black focus:ring-2 focus:ring-green-400"
                 value={signupData.password}
                 onChange={(e) =>
                   setSignupData({ ...signupData, password: e.target.value })
