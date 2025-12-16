@@ -9,6 +9,8 @@ const LoginPage = () => {
     password: "",
   });
 
+  const { isPending, error, signupMutation } = useSignUp();
+
   const handleLogin = (e) => {
     e.preventDefault();
     console.log(loginData);
